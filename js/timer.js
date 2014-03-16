@@ -22,6 +22,10 @@ GameTimer.prototype.start = function() {
   }, 1000);
 };
 
+GameTimer.prototype.addBonusTime = function(bonusTime) {
+  this.seconds += bonusTime;
+};
+
 GameTimer.prototype.stop = function() {
   clearInterval(this.intervalHandle);
 }

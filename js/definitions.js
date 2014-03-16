@@ -1,32 +1,41 @@
-function def() {
+function Definitions() {
   this.powToPrime = {
-    "2": 2,
-    "4": 3,
-    "8": 5,
-    "16": 7,
-    "32": 11,
-    "64": 13,
-    "128": 17,
-    "256": 19,
-    "512": 23,
-    "1024": 29,
-    "2048": 31
-  };
-  this.map = function (pow) {
-    return this.powToPrime[pow.toString()];
-  };
-  this.first = function () {
-    return this.powToPrime["2"];
-  };
-  this.second = function () {
-    return this.powToPrime["4"];
-  };
-  this.last = function () {
-    return this.powToPrime["2048"];
-  };
-  this.highScore = function() {
-    return 2048;
+    "2": { value: 2, bonusTime: 0 },
+    "4": { value: 3, bonusTime: 0 },
+    "8": { value: 5, bonusTime: 0 },
+    "16": { value: 7, bonusTime: 1 },
+    "32": { value: 11, bonusTime: 1 },
+    "64": { value: 13, bonusTime: 5 },
+    "128": { value: 17, bonusTime: 5 },
+    "256": { value: 19, bonusTime: 5 },
+    "512": { value: 23, bonusTime: 5 },
+    "1024": { value: 29, bonusTime: 5 },
+    "2048": { value: 31, bonusTime: 5 }
   };
 }
 
-Definitions = new def();
+Definitions.prototype.map = function (pow) {
+    return this.powToPrime[pow.toString()].value;
+};
+
+Definitions.prototype.first = function () {
+    return this.powToPrime["2"].value;
+};
+
+Definitions.prototype.second = function () {
+    return this.powToPrime["4"].value;
+};
+
+Definitions.prototype.last = function () {
+    return this.powToPrime["2048"].value;
+};
+
+Definitions.prototype.highScore = function() {
+    return 2048;
+};
+
+Definitions.prototype.bonusTimeForTile = function(tileValue) {
+  return this.powToPrime[tileValue.toString()].bonusTime;
+};
+
+definitions = new Definitions();

@@ -139,6 +139,10 @@ GameManager.prototype.move = function (direction) {
           var merged = new Tile(positions.next, tile.value * 2);
           merged.mergedFrom = [tile, next];
 
+          //When merging tiles of a certain value, get bonus time
+          var bonusTime = definitions.bonusTimeForTile(merged.value);
+          self.timer.addBonusTime(bonusTime);
+
           self.grid.insertTile(merged);
           self.grid.removeTile(tile);
 
@@ -149,7 +153,7 @@ GameManager.prototype.move = function (direction) {
           self.score += merged.value;
 
           // The mighty 2048 tile
-          if (merged.value === Definitions.highScore()) self.won = true;
+          if (merged.value === definitions.highScore()) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
