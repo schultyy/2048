@@ -80,7 +80,7 @@ KeyboardInputManager.prototype.listen = function () {
 
   gameContainer.addEventListener("touchend", function (event) {
     if (event.touches.length > 0) return;
-
+    this.moves++;
     var dx = event.changedTouches[0].clientX - touchStartClientX;
     var absDx = Math.abs(dx);
 
