@@ -121,7 +121,7 @@ HTMLActuator.prototype.updateScore = function (score) {
 
   if (difference > 0) {
     var addition = document.createElement("div");
-    addition.classList.add("score-addition");
+    addition.classList.add("addition");
     addition.textContent = "+" + difference;
 
     this.scoreContainer.appendChild(addition);
@@ -137,6 +137,18 @@ HTMLActuator.prototype.updateMoves = function (moves) {
 HTMLActuator.prototype.updateTime = function(newTime) {
   this.clearContainer(this.timerContainer);
   this.timerContainer.textContent = newTime;
+};
+
+HTMLActuator.prototype.bonusTimeAddition = function(bonusTime) {
+  if(bonusTime === 0) {
+    //Do not show animation when there wasn't gained a bonus
+    return;
+  }
+  var bonus = document.createElement('div');
+  bonus.classList.add("addition");
+  bonus.textContent = "+" + bonusTime.toString();
+
+  this.timerContainer.appendChild(bonus);
 };
 
 HTMLActuator.prototype.updateBestScore = function (bestScore) {

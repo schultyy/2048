@@ -142,6 +142,7 @@ GameManager.prototype.move = function (direction) {
           //When merging tiles of a certain value, get bonus time
           var bonusTime = definitions.bonusTimeForTile(merged.value);
           self.timer.addBonusTime(bonusTime);
+          self.actuator.bonusTimeAddition(bonusTime);
 
           self.grid.insertTile(merged);
           self.grid.removeTile(tile);
