@@ -1,6 +1,6 @@
 function KeyboardInputManager() {
   this.events = {};
-
+  this.moves = 0;
   this.listen();
 }
 
@@ -46,6 +46,7 @@ KeyboardInputManager.prototype.listen = function () {
     if (!modifiers) {
       if (mapped !== undefined) {
         event.preventDefault();
+        self.moves++;
         self.emit("move", mapped);
       }
 
