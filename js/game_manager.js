@@ -1,9 +1,9 @@
 function GameManager(size, InputManager, Actuator, ScoreManager, Timer) {
   this.size         = size; // Size of the grid
   this.startTiles   = 2;
-  this.inputManager = new InputManager;
-  this.scoreManager = new ScoreManager;
-  this.actuator     = new Actuator;
+  this.inputManager = new InputManager();
+  this.scoreManager = new ScoreManager();
+  this.actuator     = new Actuator();
   var self          = this;
   this.timer        = new GameTimer(function(t) {
     self.actuator.updateTime(t.seconds);
