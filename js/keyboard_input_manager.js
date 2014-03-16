@@ -66,12 +66,12 @@ KeyboardInputManager.prototype.listen = function () {
   var touchStartClientX, touchStartClientY;
   var gameContainer = document.getElementsByClassName("game-container")[0];
 
+  var self = this;
   gameContainer.addEventListener("touchstart", function (event) {
     if (event.touches.length > 1) return;
 
     touchStartClientX = event.touches[0].clientX;
     touchStartClientY = event.touches[0].clientY;
-    this.moves++;
     event.preventDefault();
   });
 
@@ -90,6 +90,7 @@ KeyboardInputManager.prototype.listen = function () {
 
     if (Math.max(absDx, absDy) > 10) {
       // (right : left) : (down : up)
+      self.moves++;
       self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
     }
   });
