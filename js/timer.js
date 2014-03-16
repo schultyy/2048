@@ -1,12 +1,13 @@
-function GameTimer(updateCall) {
+function GameTimer(updateCall, finished) {
   this.seconds = 30;
-  this.finished = false;
   this.intervalHandle = {};
   this.update = updateCall;
+  this.finished = finished;
 }
 
 GameTimer.prototype.start = function() {
   var self = this;
+  this.seconds = 30; //re set seconds here in case of restart
   this.intervalHandle = setInterval(function (){
     self.update(self);
 
@@ -16,7 +17,11 @@ GameTimer.prototype.start = function() {
     else {
       self.seconds = 0;
       clearInterval(self.intervalHandle);
-      self.finished = true;
+      self.finished();
     }
   }, 1000);
 };
+
+GameTimer.prototype.stop = function() {
+  clearInterval(self.intervalHandle);
+}

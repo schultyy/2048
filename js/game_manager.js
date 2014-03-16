@@ -1,13 +1,16 @@
 function GameManager(size, InputManager, Actuator, ScoreManager, Timer) {
   this.size         = size; // Size of the grid
+  this.startTiles   = 2;
   this.inputManager = new InputManager;
   this.scoreManager = new ScoreManager;
   this.actuator     = new Actuator;
   var self          = this;
   this.timer        = new GameTimer(function(t) {
     self.actuator.updateTime(t.seconds);
+  }, function () {
+    self.over = true;
+    self.actuate();
   });
-  this.startTiles   = 2;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -29,9 +32,7 @@ GameManager.prototype.keepPlaying = function () {
 };
 
 GameManager.prototype.isGameTerminated = function () {
-  if (this.over ||
-      this.timer.finished ||
-      (this.won && !this.keepPlaying)) {
+  if (this.over || (this.won && !this.keepPlaying)) {
     return true;
   } else {
     return false;
@@ -165,6 +166,7 @@ GameManager.prototype.move = function (direction) {
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
+      this.timer.stop();
     }
 
     this.actuate();
