@@ -131,8 +131,7 @@ HTMLActuator.prototype.updateScore = function (score) {
 HTMLActuator.prototype.updateMoves = function (moves) {
   this.clearContainer(this.movesContainer);
   this.movesContainer.textContent = moves;
-}
-
+};
 
 HTMLActuator.prototype.updateTime = function(newTime) {
   this.clearContainer(this.timerContainer);
