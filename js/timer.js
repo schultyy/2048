@@ -23,5 +23,5 @@ GameTimer.prototype.start = function() {
 };
 
 GameTimer.prototype.stop = function() {
-  clearInterval(self.intervalHandle);
+  clearInterval(this.intervalHandle);
 }
