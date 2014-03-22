@@ -4,11 +4,13 @@ function GameManager(size, InputManager, Actuator, ScoreManager, Timer) {
   this.inputManager = new InputManager();
   this.scoreManager = new ScoreManager();
   this.actuator     = new Actuator();
+  this.outOfTime    = false;
   var self          = this;
   this.timer        = new GameTimer(function(t) {
     self.actuator.updateTime(t.seconds);
   }, function () {
     self.over = true;
+    self.outOfTime = true;
     self.actuate();
   });
 
@@ -85,6 +87,7 @@ GameManager.prototype.actuate = function () {
     moves:      this.inputManager.moves,
     over:       this.over,
     won:        this.won,
+    outOfTime:  this.outOfTime,
     bestScore:  this.scoreManager.get(),
     terminated: this.isGameTerminated()
   });
@@ -171,6 +174,7 @@ GameManager.prototype.move = function (direction) {
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
+      this.terminated = true;
       this.inputManager.moves = 0;
       this.timer.stop();
     }
