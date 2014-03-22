@@ -6,11 +6,11 @@ function Definitions() {
     "16": { value: 7, bonusTime: 2 },
     "32": { value: 11, bonusTime: 2 },
     "64": { value: 13, bonusTime: 5 },
-    "128": { value: 17, bonusTime: 5 },
-    "256": { value: 19, bonusTime: 5 },
-    "512": { value: 23, bonusTime: 5 },
-    "1024": { value: 29, bonusTime: 5 },
-    "2048": { value: 31, bonusTime: 5 }
+    "128": { value: 17, bonusTime: 10 },
+    "256": { value: 19, bonusTime: 10 },
+    "512": { value: 23, bonusTime: 15 },
+    "1024": { value: 29, bonusTime: 20 },
+    "2048": { value: 31, bonusTime: 20 }
   };
 }
 
